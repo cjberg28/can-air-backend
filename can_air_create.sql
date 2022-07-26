@@ -12,13 +12,29 @@ CREATE TABLE destination
     CONSTRAINT PK_destination PRIMARY KEY (DestinationId)
 );
 
+
+
+CREATE TABLE person
+(
+	PersonId int not null auto_increment,
+    FirstName varchar(30) not null,
+    LastName varchar(30) not null,
+    Phone int,
+    Email varchar(30),
+    DOB date,
+    
+    CONSTRAINT PK_person PRIMARY KEY (PersonId)
+);
+
 CREATE TABLE users
 (
 	UserId int not null auto_increment,
-    Username varchar(30) not null,
+    PersonId int not null UNIQUE,
+    Username varchar(30) not null UNIQUE,
     Password varchar(30) not null,
 	
-    CONSTRAINT PK_users PRIMARY KEY (UserId)
+    CONSTRAINT PK_users PRIMARY KEY (UserId),
+    CONSTRAINT FK_users_person_PersonId FOREIGN KEY (PersonId) REFERENCES person(PersonId)
 );
 
 
@@ -29,23 +45,6 @@ CREATE TABLE flight_type
     
     CONSTRAINT PK_flight_type PRIMARY KEY (FlightTypeId)
 );
-
-
-CREATE TABLE person
-(
-	PersonId int not null auto_increment,
-    UserId int not null,
-    FirstName varchar(30) not null,
-    LastName varchar(30) not null,
-    Phone int,
-    Email varchar(30),
-    DOB date,
-    
-    CONSTRAINT UC_person UNIQUE (UserId),
-    CONSTRAINT PK_person PRIMARY KEY (PersonId),
-    CONSTRAINT FK_person_user_UserId FOREIGN KEY (UserId) REFERENCES users(UserId)
-);
-
 
 
 CREATE TABLE flight
