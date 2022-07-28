@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
@@ -73,6 +74,10 @@ public class Flight {
 	@Min(0)
 	@Column(name="FlightCapacity")
 	private int seatsRemaining;//Alternate: flightCapacity
+	
+	
+	@OneToOne(mappedBy="flight")//Reservation class' flight variable
+	private Reservation reservation;
 
 	
 
