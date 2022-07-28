@@ -2,23 +2,10 @@ package canair.services;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import canair.daos.FlightDAOImplementation;
 import canair.models.Flight;
 
-@Service
-@Transactional
-public class FlightService {
-
-	@Autowired
-	FlightDAOImplementation dao;
+public interface FlightService {
 	
-	public List<Flight> getAllFlights() {
-		return dao.findAll();
-	}
-
+	public List<Flight> getAllFlights();
+	public Flight findById(int id);
 }
