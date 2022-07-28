@@ -1,5 +1,6 @@
 package canair.models;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -48,24 +49,24 @@ public class Flight {
 	@Valid
 	@NotNull
 	@Column(name="Date")
-	private Date date;
+	private LocalDate date;//YYYY-MM-DD
 	
 	@Valid
 	@NotNull
 	@Column(name="Time")
-	private LocalTime time;
+	private LocalTime time;//HH:MM
 	
 	@Valid
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name="FlightTypeId")//FlightType's flightTypeId ??
-	private FlightType flightType;
+	@JoinColumn(name="IsRoundTrip")//FlightType's flightTypeId ??
+	private boolean isRoundTrip;
 	
 	@Valid
 	@NotNull //No idea if this is necessary
 	@DecimalMin("0.01")
 	@Column(name="FlightPrice")
-	private float flightPrice;//TODO: Change this or ERD
+	private float flightPrice;
 	
 	@Valid
 	@NotNull //No idea if this is necessary
@@ -73,9 +74,11 @@ public class Flight {
 	@Column(name="FlightCapacity")
 	private int seatsRemaining;//Alternate: flightCapacity
 
+	
+
 	public Flight(@Valid int flightId, @Valid @NotNull Destination startLocation,
-			@Valid @NotNull Destination endLocation, @Valid @NotNull Date date, @Valid @NotNull LocalTime time,
-			@Valid @NotNull FlightType flightType, @Valid @NotNull @DecimalMin("0.01") float flightPrice,
+			@Valid @NotNull Destination endLocation, @Valid @NotNull LocalDate date, @Valid @NotNull LocalTime time,
+			@Valid @NotNull boolean isRoundTrip, @Valid @NotNull @DecimalMin("0.01") float flightPrice,
 			@Valid @NotNull @Min(0) int seatsRemaining) {
 		super();
 		this.flightId = flightId;
@@ -83,20 +86,7 @@ public class Flight {
 		this.endLocation = endLocation;
 		this.date = date;
 		this.time = time;
-		this.flightType = flightType;
-		this.flightPrice = flightPrice;
-		this.seatsRemaining = seatsRemaining;
-	}
-
-	public Flight(@Valid @NotNull Destination startLocation, @Valid @NotNull Destination endLocation,
-			@Valid @NotNull Date date, @Valid @NotNull LocalTime time, @Valid @NotNull FlightType flightType,
-			@Valid @NotNull @DecimalMin("0.01") float flightPrice, @Valid @NotNull @Min(0) int seatsRemaining) {
-		super();
-		this.startLocation = startLocation;
-		this.endLocation = endLocation;
-		this.date = date;
-		this.time = time;
-		this.flightType = flightType;
+		this.isRoundTrip = isRoundTrip;
 		this.flightPrice = flightPrice;
 		this.seatsRemaining = seatsRemaining;
 	}
@@ -129,11 +119,11 @@ public class Flight {
 		this.endLocation = endLocation;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -145,12 +135,12 @@ public class Flight {
 		this.time = time;
 	}
 
-	public FlightType getFlightType() {
-		return flightType;
+	public boolean isRoundTrip() {
+		return isRoundTrip;
 	}
 
-	public void setFlightType(FlightType flightType) {
-		this.flightType = flightType;
+	public void setRoundTrip(boolean isRoundTrip) {
+		this.isRoundTrip = isRoundTrip;
 	}
 
 	public float getFlightPrice() {
@@ -172,9 +162,8 @@ public class Flight {
 	@Override
 	public String toString() {
 		return "Flight [flightId=" + flightId + ", startLocation=" + startLocation + ", endLocation=" + endLocation
-				+ ", date=" + date + ", time=" + time + ", flightType=" + flightType + ", flightPrice=" + flightPrice
+				+ ", date=" + date + ", time=" + time + ", isRoundTrip=" + isRoundTrip + ", flightPrice=" + flightPrice
 				+ ", seatsRemaining=" + seatsRemaining + "]";
 	}
-	
-	
+
 }

@@ -1,5 +1,7 @@
 package canair.repositories;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -16,5 +18,14 @@ import canair.models.Flight;
  */
 @Repository
 public interface FlightRepository extends CrudRepository<Flight, Integer> {
+
+	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndReturnDate(
+			int departureLocation, int arrivalLocation, LocalDate departureDate, boolean isRoundTrip, LocalDate returnDate);
 	//Only put custom methods in here.
+
+	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDate(int departureLocation, int arrivalLocation, LocalDate departureDate);
+
+	List<Flight> findByDepartureLocationAndArrivalLocation(int departureLocation, int arrivalLocation);
+
+	List<Flight> findByDepartureLocation(int departureLocation);
 }
