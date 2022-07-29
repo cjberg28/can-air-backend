@@ -28,7 +28,7 @@ public class UserServiceImplementation implements UserService {
 		
 		//Custom method could return null - NullPointerException
 		try {
-			User user = userRepository.findByUsernameAndPassword(username, password);
+			User user = userRepository.findByUsernameAndPassword(username, password);//null if invalid login
 			Optional<Person> person = personRepository.findById(user.getPersonId());
 			if (person.isPresent()) {
 				return person.get();
