@@ -6,7 +6,7 @@ import canair.models.Reservation;
 
 public interface ReservationService {
 
-	List<Reservation> getReservationsByUsername(String username);
+	List<Reservation> getReservationsByUserId(int userId);
 
 	Reservation createReservation(Reservation reservation);
 

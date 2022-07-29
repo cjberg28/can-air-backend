@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +25,10 @@ public class UserController {
 	@PostMapping("/users")
 	public Person authenticateUser(@RequestBody User user) {
 		return userService.authenticateUser(user.getUsername(), user.getPassword());//Could return null
+	}
+	
+	@PutMapping("/users")
+	public boolean updatePrimaryContactInformation(@RequestBody Person person) {
+		return userService.updatePrimaryContactInformation(person);
 	}
 }

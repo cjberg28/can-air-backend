@@ -35,4 +35,16 @@ public class UserServiceImplementation implements UserService {
 		}
 	}
 
+	//On the front end, a user updates their contact info, not a person.
+	//Thus, this method is in the User service, and not a Person service.
+	@Override
+	public boolean updatePrimaryContactInformation(Person person) {
+		int rowsAffected = personRepository.updatePerson(person.getPersonId(),person.getFirstName(),person.getLastName(),
+														 person.getPhoneNumber(),person.getEmail(),person.getDateOfBirth());
+		if (rowsAffected == 1) {
+			return true;
+		}
+		return false;
+	}
+
 }

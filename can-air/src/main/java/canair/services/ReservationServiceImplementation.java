@@ -17,26 +17,33 @@ public class ReservationServiceImplementation implements ReservationService {
 	private ReservationRepository repository;
 
 	@Override
-	public List<Reservation> getReservationsByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reservation> getReservationsByUserId(int userId) {
+		return repository.findByUserId(userId);//TODO: Could be an empty list or null, unknown until testing.
 	}
 
 	@Override
 	public Reservation createReservation(Reservation reservation) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.save(reservation);
 	}
 
+	//Updating a reservation will not change the reservationId nor the userId, only the flightId.
+	//The User-Person OneToOne relationship only exists to autofill information in the reservation form on
+	//the front end. Any change to the basic contact information will be only on the front end.
 	@Override
 	public boolean updateReservation(Reservation reservation) {
-		// TODO Auto-generated method stub
+		int rowsAffected = repository.updateReservation(reservation.getReservationId(), reservation.getFlightId());
+		if (rowsAffected == 1) {//Update successful.
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteReservation(Reservation reservation) {
-		// TODO Auto-generated method stub
+		int rowsAffected = repository.deleteReservation(reservation.getReservationId());
+		if (rowsAffected == 1) {//Delete successful.
+			return true;
+		}
 		return false;
 	}
 

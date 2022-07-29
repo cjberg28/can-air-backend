@@ -23,10 +23,10 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	//GET: /reservations?user={username}
+	//GET: /reservations?userId={userId}
 	@GetMapping("/reservations")
-	public List<Reservation> getReservationsByUsername(@RequestParam(name="user") String username) {
-		return reservationService.getReservationsByUsername(username);
+	public List<Reservation> getReservationsByUserId(@RequestParam(name="userId") int userId) {
+		return reservationService.getReservationsByUserId(userId);
 	}
 	
 	@PostMapping("/reservations")
