@@ -16,6 +16,7 @@ public class GlobalExceptionHandler {
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(Exception.class)
 	public String returnDateMissing(Exception e) {
+		e.printStackTrace();
 		return "Error: Round-trip flight selected but no return date provided.";
 	}
 }

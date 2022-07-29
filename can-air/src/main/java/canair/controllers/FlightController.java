@@ -1,6 +1,7 @@
 package canair.controllers;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -35,9 +36,31 @@ public class FlightController {
 	@GetMapping("/flights/search")
 	public List<Flight> searchFlights(@RequestParam(name="departing") int departureLocation,
 									  @RequestParam(name="arriving") int arrivalLocation,
-									  @RequestParam(name="depDate") LocalDate departureDate,
+									  @RequestParam(name="depDate") String departureDateString,
 									  @RequestParam(name="roundTrip") boolean isRoundTrip,
-									  @RequestParam(required=false, name="retDate") LocalDate returnDate) throws Exception {//returnDate is null if not specified
+									  @RequestParam(required=false, name="retDate") String returnDateString) throws Exception {//returnDate is null if not specified
+		
+		System.out.println(departureDateString);
+		System.out.println(returnDateString);
+		
+		LocalDate departureDate;
+		LocalDate returnDate;
+		
+		//Get the string date from the URL and parse it to a LocalDate
+		try {
+			departureDate = LocalDate.parse(departureDateString);//Throws a DateTimeParseException
+		} catch (DateTimeParseException e) {
+			departureDate = null;
+		}
+		if (returnDateString != null) {
+			try {
+				returnDate = LocalDate.parse(returnDateString);//Throws a DateTimeParseException
+			} catch (DateTimeParseException e) {
+				returnDate = null;
+			}
+		} else {
+			returnDate = null;
+		}
 		
 		//if (isRoundTrip == true) -> if (returnDate is null/empty) -> Give 400
 		//Assume: Departing/Arriving Locations are valid and not equal, depDate is valid and before retDate,
