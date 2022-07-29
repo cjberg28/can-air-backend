@@ -19,8 +19,8 @@ CREATE TABLE person
 	PersonId int not null auto_increment,
     FirstName varchar(30) not null,
     LastName varchar(30) not null,
-    Phone varchar(20),
-    Email varchar(30),
+    Phone varchar(20) UNIQUE,
+    Email varchar(30) UNIQUE,
     DOB date,
     
     CONSTRAINT PK_person PRIMARY KEY (PersonId)
