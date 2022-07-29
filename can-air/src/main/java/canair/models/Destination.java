@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 //@Component
 @Entity
 @Table(name="destination")
@@ -40,12 +42,17 @@ public class Destination {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="departingTo")//Flight class' departingTo variable
 	private List<Flight> inboundFlights;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="leavingFrom")//Flight class' leavingFrom variable
 	private List<Flight> outboundFlights;
-	
+
+	public Destination() {
+		super();
+	}
 
 	public Destination(@Valid @Min(1) int destinationId, @Valid @NotNull @NotEmpty @NotBlank String destinationName) {
 		super();

@@ -24,6 +24,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name="flight")
@@ -92,13 +95,16 @@ public class Flight {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="flight")//Reservation class' flight variable
 	private List<Reservation> reservations;
 
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="EndId")//flight table's EndId foreign key
 	private Destination departingTo;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="StartId")//flight table's StartId foreign key
 	private Destination leavingFrom;
@@ -108,6 +114,178 @@ public class Flight {
 	//So, no constructor without the PK is necessary.
 	public Flight() {
 		super();
+	}
+
+
+	public Flight(@Valid int flightId, @Valid @NotNull int departureLocation, @Valid @NotNull int arrivalLocation,
+			@Valid @NotNull LocalDate departureDate, @Valid @NotNull LocalTime departureDepartureTime,
+			@Valid @NotNull LocalTime departureArrivalTime, @Valid LocalDate returnDate,
+			@Valid LocalTime returnDepartureTime, @Valid LocalTime returnArrivalTime,
+			@Valid @NotNull boolean isRoundTrip, @Valid @NotNull @DecimalMin("0.01") float flightPrice,
+			@Valid @NotNull @Min(0) int seatsRemaining) {
+		super();
+		this.flightId = flightId;
+		this.departureLocation = departureLocation;
+		this.arrivalLocation = arrivalLocation;
+		this.departureDate = departureDate;
+		this.departureDepartureTime = departureDepartureTime;
+		this.departureArrivalTime = departureArrivalTime;
+		this.returnDate = returnDate;
+		this.returnDepartureTime = returnDepartureTime;
+		this.returnArrivalTime = returnArrivalTime;
+		this.isRoundTrip = isRoundTrip;
+		this.flightPrice = flightPrice;
+		this.seatsRemaining = seatsRemaining;
+	}
+
+
+	public int getFlightId() {
+		return flightId;
+	}
+
+
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
+
+
+	public int getDepartureLocation() {
+		return departureLocation;
+	}
+
+
+	public void setDepartureLocation(int departureLocation) {
+		this.departureLocation = departureLocation;
+	}
+
+
+	public int getArrivalLocation() {
+		return arrivalLocation;
+	}
+
+
+	public void setArrivalLocation(int arrivalLocation) {
+		this.arrivalLocation = arrivalLocation;
+	}
+
+
+	public LocalDate getDepartureDate() {
+		return departureDate;
+	}
+
+
+	public void setDepartureDate(LocalDate departureDate) {
+		this.departureDate = departureDate;
+	}
+
+
+	public LocalTime getDepartureDepartureTime() {
+		return departureDepartureTime;
+	}
+
+
+	public void setDepartureDepartureTime(LocalTime departureDepartureTime) {
+		this.departureDepartureTime = departureDepartureTime;
+	}
+
+
+	public LocalTime getDepartureArrivalTime() {
+		return departureArrivalTime;
+	}
+
+
+	public void setDepartureArrivalTime(LocalTime departureArrivalTime) {
+		this.departureArrivalTime = departureArrivalTime;
+	}
+
+
+	public LocalDate getReturnDate() {
+		return returnDate;
+	}
+
+
+	public void setReturnDate(LocalDate returnDate) {
+		this.returnDate = returnDate;
+	}
+
+
+	public LocalTime getReturnDepartureTime() {
+		return returnDepartureTime;
+	}
+
+
+	public void setReturnDepartureTime(LocalTime returnDepartureTime) {
+		this.returnDepartureTime = returnDepartureTime;
+	}
+
+
+	public LocalTime getReturnArrivalTime() {
+		return returnArrivalTime;
+	}
+
+
+	public void setReturnArrivalTime(LocalTime returnArrivalTime) {
+		this.returnArrivalTime = returnArrivalTime;
+	}
+
+
+	public boolean isRoundTrip() {
+		return isRoundTrip;
+	}
+
+
+	public void setRoundTrip(boolean isRoundTrip) {
+		this.isRoundTrip = isRoundTrip;
+	}
+
+
+	public float getFlightPrice() {
+		return flightPrice;
+	}
+
+
+	public void setFlightPrice(float flightPrice) {
+		this.flightPrice = flightPrice;
+	}
+
+
+	public int getSeatsRemaining() {
+		return seatsRemaining;
+	}
+
+
+	public void setSeatsRemaining(int seatsRemaining) {
+		this.seatsRemaining = seatsRemaining;
+	}
+
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+
+	public Destination getDepartingTo() {
+		return departingTo;
+	}
+
+
+	public void setDepartingTo(Destination departingTo) {
+		this.departingTo = departingTo;
+	}
+
+
+	public Destination getLeavingFrom() {
+		return leavingFrom;
+	}
+
+
+	public void setLeavingFrom(Destination leavingFrom) {
+		this.leavingFrom = leavingFrom;
 	}
 
 

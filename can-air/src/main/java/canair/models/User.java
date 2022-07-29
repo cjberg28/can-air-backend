@@ -19,6 +19,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="users")
 @Validated
@@ -52,10 +54,11 @@ public class User {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy="user")//Reservation class' user variable
 	private List<Reservation> reservations;
 	
+	@JsonManagedReference
 	@OneToOne
 	@JoinColumn(name="PersonId")//users table's PersonId foreign key
 	private Person person;

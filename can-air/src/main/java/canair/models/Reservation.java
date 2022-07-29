@@ -15,6 +15,9 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="reservation")
 @Validated
@@ -40,10 +43,12 @@ public class Reservation {
 	
 	//MAPPINGS BELOW
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="UserId")//reservation table's UserId
 	private User user;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="FlightId")//reservation table's FlightId
 	private Flight flight;

@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.lang.Nullable;
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="person")
 @Validated
@@ -61,6 +63,7 @@ public class Person {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
+	@JsonBackReference
 	@OneToOne(mappedBy="person")//User class' person variable
 	private User user;
 
