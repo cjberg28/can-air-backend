@@ -2,7 +2,7 @@ CREATE SCHEMA can_air;
 
 START TRANSACTION;
 
-DROP TABLES IF EXISTS destination, person, flight_type, users, flight, reservation CASCADE;
+DROP TABLES IF EXISTS destination, person, users, flight, reservation CASCADE;
 
 CREATE TABLE destination
 (
