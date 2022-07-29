@@ -39,22 +39,39 @@ public class Flight {
 	@Valid
 	@NotNull
 	@Column(name="StartId", insertable=false, updatable=false)
-	private int startLocation;
+	private int departureLocation;
 	
 	@Valid
 	@NotNull
 	@Column(name="EndId", insertable=false, updatable=false)
-	private int endLocation;
+	private int arrivalLocation;
 	
 	@Valid
 	@NotNull
-	@Column(name="Date")
-	private LocalDate date;//YYYY-MM-DD
+	@Column(name="DepartureDate")
+	private LocalDate departureDate;//YYYY-MM-DD
 	
 	@Valid
 	@NotNull
-	@Column(name="Time")
-	private LocalTime time;//HH:MM
+	@Column(name="DepartureDepartureTime")//Departing flight's departure time
+	private LocalTime departureDepartureTime;//HH:MM
+	
+	@Valid
+	@NotNull
+	@Column(name="DepartureArrivalTime")//Departing flight's arrival time
+	private LocalTime departureArrivalTime;//HH:MM
+	
+	@Valid
+	@Column(name="ReturnDate")
+	private LocalDate returnDate;
+	
+	@Valid
+	@Column(name="ReturnDepartureTime")//Return flight's departure time
+	private LocalTime returnDepartureTime;//HH:MM
+	
+	@Valid
+	@Column(name="ReturnArrivalTime")//Return flight's arrival time
+	private LocalTime returnArrivalTime;//HH:MM
 	
 	@Valid
 	@NotNull
@@ -94,139 +111,6 @@ public class Flight {
 	}
 
 
-	public Flight(@Valid int flightId, @Valid @NotNull int startLocation, @Valid @NotNull int endLocation,
-			@Valid @NotNull LocalDate date, @Valid @NotNull LocalTime time, @Valid @NotNull boolean isRoundTrip,
-			@Valid @NotNull @DecimalMin("0.01") float flightPrice, @Valid @NotNull @Min(0) int seatsRemaining) {
-		super();
-		this.flightId = flightId;
-		this.startLocation = startLocation;
-		this.endLocation = endLocation;
-		this.date = date;
-		this.time = time;
-		this.isRoundTrip = isRoundTrip;
-		this.flightPrice = flightPrice;
-		this.seatsRemaining = seatsRemaining;
-	}
-
-
-	public int getFlightId() {
-		return flightId;
-	}
-
-
-	public void setFlightId(int flightId) {
-		this.flightId = flightId;
-	}
-
-
-	public int getStartLocation() {
-		return startLocation;
-	}
-
-
-	public void setStartLocation(int startLocation) {
-		this.startLocation = startLocation;
-	}
-
-
-	public int getEndLocation() {
-		return endLocation;
-	}
-
-
-	public void setEndLocation(int endLocation) {
-		this.endLocation = endLocation;
-	}
-
-
-	public LocalDate getDate() {
-		return date;
-	}
-
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-
-	public LocalTime getTime() {
-		return time;
-	}
-
-
-	public void setTime(LocalTime time) {
-		this.time = time;
-	}
-
-
-	public boolean isRoundTrip() {
-		return isRoundTrip;
-	}
-
-
-	public void setRoundTrip(boolean isRoundTrip) {
-		this.isRoundTrip = isRoundTrip;
-	}
-
-
-	public float getFlightPrice() {
-		return flightPrice;
-	}
-
-
-	public void setFlightPrice(float flightPrice) {
-		this.flightPrice = flightPrice;
-	}
-
-
-	public int getSeatsRemaining() {
-		return seatsRemaining;
-	}
-
-
-	public void setSeatsRemaining(int seatsRemaining) {
-		this.seatsRemaining = seatsRemaining;
-	}
-
-
-	public List<Reservation> getReservations() {
-		return reservations;
-	}
-
-
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
-	}
-
-
-	public Destination getDepartingTo() {
-		return departingTo;
-	}
-
-
-	public void setDepartingTo(Destination departingTo) {
-		this.departingTo = departingTo;
-	}
-
-
-	public Destination getleavingFrom() {
-		return leavingFrom;
-	}
-
-
-	public void setleavingFrom(Destination leavingFrom) {
-		this.leavingFrom = leavingFrom;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Flight [flightId=" + flightId + ", startLocation=" + startLocation + ", endLocation=" + endLocation
-				+ ", date=" + date + ", time=" + time + ", isRoundTrip=" + isRoundTrip + ", flightPrice=" + flightPrice
-				+ ", seatsRemaining=" + seatsRemaining + "]";
-	}
-
-	
 	
 	
 	
