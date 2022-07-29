@@ -22,7 +22,6 @@ public class UserController {
 	//This is weird because it is a post mapping but does a get in the repository.
 	//Not creating a new Session with the provided user information, so this is essentially why.
 	@PostMapping("/users")
-	@ResponseBody
 	public Person authenticateUser(@RequestBody User user) {
 		return userService.authenticateUser(user.getUsername(), user.getPassword());//Could return null
 	}

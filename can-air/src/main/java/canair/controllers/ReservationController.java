@@ -1,10 +1,46 @@
 package canair.controllers;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import canair.models.Reservation;
+import canair.services.ReservationService;
+
+@RestController
 @CrossOrigin("*")
 public class ReservationController {
 	
+	@Autowired
+	private ReservationService reservationService;
+	
+	//GET: /reservations?user={username}
+	@GetMapping("/reservations")
+	public List<Reservation> getReservationsByUsername(@RequestParam(name="user") String username) {
+		return reservationService.getReservationsByUsername(username);
+	}
+	
+	@PostMapping("/reservations")
+	public Reservation createReservation(@RequestBody Reservation reservation) {
+		return reservationService.createReservation(reservation);
+	}
+	
+	@PutMapping("/reservations")
+	public boolean updateReservation(@RequestBody Reservation reservation) {
+		return reservationService.updateReservation(reservation);
+	}
+	
+	@DeleteMapping("/reservations")
+	public boolean deleteReservation(@RequestBody Reservation reservation) {
+		return reservationService.deleteReservation(reservation);
+	}
 }

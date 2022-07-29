@@ -43,7 +43,7 @@ public class Destination {
 	@OneToMany(mappedBy="departingTo")//Flight class' departingTo variable
 	private List<Flight> inboundFlights;
 	
-	@OneToMany(mappedBy="returningTo")//Flight class' returningTo variable
+	@OneToMany(mappedBy="leavingFrom")//Flight class' leavingFrom variable
 	private List<Flight> outboundFlights;
 	
 

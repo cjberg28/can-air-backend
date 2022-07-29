@@ -84,7 +84,7 @@ public class Flight {
 	
 	@ManyToOne
 	@JoinColumn(name="StartId")//flight table's StartId foreign key
-	private Destination returningTo;
+	private Destination leavingFrom;
 
 	
 	//Flights will not be added in this application. They are all coded in SQL beforehand.
@@ -209,13 +209,13 @@ public class Flight {
 	}
 
 
-	public Destination getReturningTo() {
-		return returningTo;
+	public Destination getleavingFrom() {
+		return leavingFrom;
 	}
 
 
-	public void setReturningTo(Destination returningTo) {
-		this.returningTo = returningTo;
+	public void setleavingFrom(Destination leavingFrom) {
+		this.leavingFrom = leavingFrom;
 	}
 
 
