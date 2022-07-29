@@ -33,7 +33,7 @@ public class User {
 	@Valid
 	@NotNull
 	@Min(1)
-	@Column(name="PersonId", unique=true)
+	@Column(name="PersonId", unique=true, insertable=false, updatable=false)
 	private int personId;
 	
 	@Valid

@@ -38,12 +38,12 @@ public class Flight {
 	
 	@Valid
 	@NotNull
-	@Column(name="StartId")
+	@Column(name="StartId", insertable=false, updatable=false)
 	private int startLocation;
 	
 	@Valid
 	@NotNull
-	@Column(name="EndId")
+	@Column(name="EndId", insertable=false, updatable=false)
 	private int endLocation;
 	
 	@Valid

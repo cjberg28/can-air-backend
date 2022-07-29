@@ -29,13 +29,13 @@ public class Reservation {
 	@Valid
 	@NotNull
 	@Min(1)
-	@Column(name="FlightId")
+	@Column(name="FlightId", insertable=false, updatable=false)
 	private int flightId;
 	
 	@Valid
 	@NotNull
 	@Min(1)
-	@Column(name="UserId")
+	@Column(name="UserId", insertable=false, updatable=false)
 	private int userId;
 	
 	//MAPPINGS BELOW
