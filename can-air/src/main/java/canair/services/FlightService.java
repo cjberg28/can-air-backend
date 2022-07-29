@@ -10,5 +10,5 @@ public interface FlightService {
 	
 	public List<Flight> getAllFlights();
 	public Flight findById(int id);
-	public List<Flight> searchFlightsWithParameters(HashMap<String,Object> parameters);
+	public List<Object> searchFlightsWithParameters(HashMap<String,Object> parameters);
 }

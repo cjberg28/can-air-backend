@@ -34,17 +34,17 @@ public class FlightController {
 	//PathVariable - Tells Spring to use {id}.
 	// /flights?departing={departureLocation}&arriving={arrivalLocation}&depDate={departureDate}&roundTrip={isRoundTrip}&retDate={returnDate}
 	@GetMapping("/flights/search")
-	public List<Flight> searchFlights(@RequestParam(name="departing") int departureLocation,
+	public List<Object> searchFlights(@RequestParam(name="departing") int departureLocation,
 									  @RequestParam(name="arriving") int arrivalLocation,
 									  @RequestParam(name="depDate") String departureDateString,
 									  @RequestParam(name="roundTrip") boolean isRoundTrip,
 									  @RequestParam(required=false, name="retDate") String returnDateString) throws Exception {//returnDate is null if not specified
 		
-		System.out.println(departureDateString);
-		System.out.println(returnDateString);
-		
 		LocalDate departureDate;
 		LocalDate returnDate;
+		
+		
+		//public List<Object> serachFlights --> [searchFoundAFlight,  List<Flight>]
 		
 		//Get the string date from the URL and parse it to a LocalDate
 		try {

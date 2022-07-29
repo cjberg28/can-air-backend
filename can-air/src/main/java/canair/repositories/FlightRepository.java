@@ -29,4 +29,7 @@ public interface FlightRepository extends CrudRepository<Flight, Integer> {
 	List<Flight> findByDepartureLocationAndArrivalLocation(int departureLocation, int arrivalLocation);
 
 	List<Flight> findByDepartureLocation(int departureLocation);
+
+	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTrip(int departureLocation, int arrivalLocation,
+			LocalDate departureDate, boolean isRoundTrip);
 }

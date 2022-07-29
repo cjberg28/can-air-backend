@@ -17,6 +17,6 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public String returnDateMissing(Exception e) {
 		e.printStackTrace();
-		return "Error: Round-trip flight selected but no return date provided.";
+		return "Error caught by global exception handler.";
 	}
 }
