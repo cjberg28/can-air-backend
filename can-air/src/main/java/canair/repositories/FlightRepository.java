@@ -19,9 +19,10 @@ import canair.models.Flight;
 @Repository
 public interface FlightRepository extends CrudRepository<Flight, Integer> {
 
+	//Only put custom methods in here.
+	
 	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndReturnDate(
 			int departureLocation, int arrivalLocation, LocalDate departureDate, boolean isRoundTrip, LocalDate returnDate);
-	//Only put custom methods in here.
 
 	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDate(int departureLocation, int arrivalLocation, LocalDate departureDate);
 
