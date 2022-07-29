@@ -29,7 +29,11 @@ public class UserServiceImplementation implements UserService {
 		//Custom method could return null - NullPointerException
 		try {
 			User user = userRepository.findByUsernameAndPassword(username, password);
-			return personRepository.findByUserId(user.getUserId());
+			Optional<Person> person = personRepository.findById(user.getPersonId());
+			if (person.isPresent()) {
+				return person.get();
+			}
+			return null;//User does not have associated personId - Critical Error
 		} catch (NullPointerException e) {
 			return null;
 		}

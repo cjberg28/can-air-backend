@@ -32,7 +32,7 @@ public class FlightController {
 	//RequestParam - Pulls the id parameter (?id=...) out of the URL.
 	//PathVariable - Tells Spring to use {id}.
 	// /flights?departing={departureLocation}&arriving={arrivalLocation}&depDate={departureDate}&roundTrip={isRoundTrip}&retDate={returnDate}
-	@GetMapping("/flights")
+	@GetMapping("/flights/search")
 	public List<Flight> searchFlights(@RequestParam(name="departing") int departureLocation,
 									  @RequestParam(name="arriving") int arrivalLocation,
 									  @RequestParam(name="depDate") LocalDate departureDate,
