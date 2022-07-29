@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
@@ -27,11 +28,13 @@ public class Reservation {
 	
 	@Valid
 	@NotNull
+	@Min(1)
 	@Column(name="FlightId")
 	private int flightId;
 	
 	@Valid
 	@NotNull
+	@Min(1)
 	@Column(name="UserId")
 	private int userId;
 	
@@ -41,11 +44,12 @@ public class Reservation {
 	@JoinColumn(name="UserId")//reservation table's UserId
 	private User user;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="FlightId")//reservation table's FlightId
 	private Flight flight;
 
-	//Mapping reference variables not included in constructors for Patrick's hibernate example, so not included here
+	//Mapping reference variables not included in constructors for Patrick's hibernate example, so not included here.
+	//This app will make new Reservations, so a constructor without the PK is needed.
 	public Reservation(@Valid @NotNull int flightId, @Valid @NotNull int userId) {
 		super();
 		this.flightId = flightId;

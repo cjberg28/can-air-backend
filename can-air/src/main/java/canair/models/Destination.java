@@ -1,5 +1,7 @@
 package canair.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,19 +25,27 @@ import org.springframework.validation.annotation.Validated;
 public class Destination {
 	
 	@Valid
-	@Min(1)
+//	@Min(1)
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	//@OneToMany(mappedBy="startDestination" OR mappedBy="endDestination") ??
 	@Column(name="DestinationId")
-	int destinationId;
+	private int destinationId;
 	
 	@Valid
 	@NotNull
 	@NotEmpty
 	@NotBlank
 	@Column(name="DestinationName")
-	String destinationName;
+	private String destinationName;
+	
+	//OBJECT MAPPING REFERENCES BELOW
+	
+	@OneToMany(mappedBy="departingTo")//Flight class' departingTo variable
+	private List<Flight> inboundFlights;
+	
+	@OneToMany(mappedBy="returningTo")//Flight class' returningTo variable
+	private List<Flight> outboundFlights;
+	
 
 	public Destination(@Valid @Min(1) int destinationId, @Valid @NotNull @NotEmpty @NotBlank String destinationName) {
 		super();
