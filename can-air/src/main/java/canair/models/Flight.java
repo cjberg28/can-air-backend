@@ -25,7 +25,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
@@ -95,16 +97,18 @@ public class Flight {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
-	@JsonBackReference
+	//@JsonIgnore did not work, so this prevents reservations from being written to JSON and sent back.
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@JsonManagedReference(value="reservation-flight")
 	@OneToMany(mappedBy="flight")//Reservation class' flight variable
 	private List<Reservation> reservations;
 
-	@JsonManagedReference
+	@JsonBackReference(value="flight-reservation-departingTo")
 	@ManyToOne
 	@JoinColumn(name="EndId")//flight table's EndId foreign key
 	private Destination departingTo;
 	
-	@JsonManagedReference
+	@JsonBackReference(value="flight-reservation-leavingFrom")
 	@ManyToOne
 	@JoinColumn(name="StartId")//flight table's StartId foreign key
 	private Destination leavingFrom;
@@ -258,7 +262,7 @@ public class Flight {
 		this.seatsRemaining = seatsRemaining;
 	}
 
-
+//	@JsonIgnore
 	public List<Reservation> getReservations() {
 		return reservations;
 	}

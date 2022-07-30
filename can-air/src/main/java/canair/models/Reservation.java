@@ -43,12 +43,12 @@ public class Reservation {
 	
 	//MAPPINGS BELOW
 	
-	@JsonBackReference
+	@JsonBackReference(value="user-reservation")
 	@ManyToOne
 	@JoinColumn(name="UserId")//reservation table's UserId
 	private User user;
 	
-	@JsonManagedReference
+	@JsonBackReference(value="reservation-flight")
 	@ManyToOne
 	@JoinColumn(name="FlightId")//reservation table's FlightId
 	private Flight flight;

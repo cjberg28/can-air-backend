@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import canair.models.PartialReservation;
 import canair.models.Reservation;
 import canair.repositories.ReservationRepository;
 
@@ -23,6 +24,7 @@ public class ReservationServiceImplementation implements ReservationService {
 
 	@Override
 	public Reservation createReservation(Reservation reservation) {
+//		return repository.createReservation(reservation);
 		return repository.save(reservation);
 	}
 

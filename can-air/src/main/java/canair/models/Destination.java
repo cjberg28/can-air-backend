@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 //@Component
 @Entity
@@ -42,11 +43,11 @@ public class Destination {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
-	@JsonBackReference
+	@JsonManagedReference(value="flight-reservation-departingTo")
 	@OneToMany(mappedBy="departingTo")//Flight class' departingTo variable
 	private List<Flight> inboundFlights;
 	
-	@JsonBackReference
+	@JsonManagedReference(value="flight-reservation-leavingFrom")
 	@OneToMany(mappedBy="leavingFrom")//Flight class' leavingFrom variable
 	private List<Flight> outboundFlights;
 

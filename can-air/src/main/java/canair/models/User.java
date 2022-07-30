@@ -54,11 +54,11 @@ public class User {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="user-reservation")
 	@OneToMany(mappedBy="user")//Reservation class' user variable
 	private List<Reservation> reservations;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="user-person")
 	@OneToOne
 	@JoinColumn(name="PersonId")//users table's PersonId foreign key
 	private Person person;

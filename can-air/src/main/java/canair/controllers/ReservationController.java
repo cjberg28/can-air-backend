@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import canair.models.PartialReservation;
 import canair.models.Reservation;
 import canair.services.ReservationService;
 

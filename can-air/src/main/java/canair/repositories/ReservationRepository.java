@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import canair.models.PartialReservation;
 import canair.models.Reservation;
 
 @Repository
@@ -23,5 +24,8 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 	int deleteReservation(int reservationId);
 
 	List<Reservation> findByUserId(int userId);
+
+//	@Query("insert ")
+//	Reservation createReservation(Reservation reservation);
 
 }

@@ -63,7 +63,7 @@ public class Person {
 	
 	//OBJECT MAPPING REFERENCES BELOW
 	
-	@JsonBackReference
+	@JsonBackReference(value="user-person")
 	@OneToOne(mappedBy="person")//User class' person variable
 	private User user;
 

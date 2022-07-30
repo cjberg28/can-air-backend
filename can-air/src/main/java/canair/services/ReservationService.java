@@ -2,6 +2,7 @@ package canair.services;
 
 import java.util.List;
 
+import canair.models.PartialReservation;
 import canair.models.Reservation;
 
 public interface ReservationService {
