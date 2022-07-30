@@ -30,7 +30,7 @@ public class Reservation {
 	private int reservationId;
 	
 	@Valid
-	@NotNull
+//	@NotNull
 	@Min(1)
 	@Column(name="FlightId", insertable=false, updatable=false)
 	private int flightId;

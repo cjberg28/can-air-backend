@@ -1,13 +1,18 @@
 package canair.services;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import canair.models.Flight;
 import canair.models.PartialReservation;
 import canair.models.Reservation;
+import canair.repositories.FlightRepository;
 import canair.repositories.ReservationRepository;
 
 @Service
@@ -18,13 +23,23 @@ public class ReservationServiceImplementation implements ReservationService {
 	private ReservationRepository repository;
 
 	@Override
-	public List<Reservation> getReservationsByUserId(int userId) {
-		return repository.findByUserId(userId);//TODO: Could be an empty list or null, unknown until testing.
+	public Map<Integer, Flight> getReservationsByUserId(int userId) {
+		List<Reservation> reservations = repository.findByUserId(userId);
+		HashMap<Integer, Flight> results = new HashMap<>();
+		
+		if (reservations.isEmpty()) {
+			return null;
+		}
+	
+		for (Reservation r : reservations) {
+			results.put(r.getReservationId(), r.getFlight());
+		}
+		
+		return results;
 	}
 
 	@Override
 	public Reservation createReservation(Reservation reservation) {
-//		return repository.createReservation(reservation);
 		return repository.save(reservation);
 	}
 
