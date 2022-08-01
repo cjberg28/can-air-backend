@@ -31,13 +31,13 @@ VALUES
 ;
 
 -- USER AND PERSON
-INSERT INTO PERSON (firstname, lastname, phone, email, dob) 
+INSERT INTO person (firstname, lastname, phone, email, dob) 
 VALUES 
 ('Atul', 'Mishra', '248-222-2222', 'amishra@gmail.com', '1989-03-09'),
 ('Cameron', 'Berg', '555-555-5555', 'cjberg@gmail.com', '1966-06-06'),
 ('Natalie', 'Riquelme', '333-333-3333', 'nreq@gmail.com', '1977-07-07');
 
-INSERT INTO USERS (personid, username, password)
+INSERT INTO users (personid, username, password)
 VALUES
 (1, 'amishra', 'hello'),
 (2, 'cberg', 'lmao'),
@@ -45,7 +45,7 @@ VALUES
 
 
 -- RESERVATION FOR USER
-INSERT INTO RESERVATION (flightid, userid)
+INSERT INTO reservation (flightid, userid)
 VALUES
 (1,1),
 (1,2),
@@ -53,8 +53,6 @@ VALUES
 (2,1),
 (2,2),
 (2,3);
-
-INSERT INTO reservation (flightid, userid) VALUE (1,1);
 
 
 
