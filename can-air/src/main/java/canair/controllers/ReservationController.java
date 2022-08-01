@@ -34,7 +34,6 @@ public class ReservationController {
 	
 	@PostMapping("/reservations")
 	public Reservation createReservation(@RequestBody Reservation reservation) {
-		System.out.println(reservation.toString());
 		return reservationService.createReservation(reservation);
 	}
 	

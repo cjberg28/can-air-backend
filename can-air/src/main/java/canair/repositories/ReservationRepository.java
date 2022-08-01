@@ -25,7 +25,4 @@ public interface ReservationRepository extends CrudRepository<Reservation, Integ
 
 	List<Reservation> findByUserId(int userId);
 
-//	@Query("insert ")
-//	Reservation createReservation(Reservation reservation);
-
 }
