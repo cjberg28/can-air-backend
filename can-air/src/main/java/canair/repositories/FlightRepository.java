@@ -1,7 +1,6 @@
 package canair.repositories;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -11,6 +10,8 @@ import canair.models.Flight;
 
 
 /**
+ * A repository to access information about flights.
+ * 
  * This repository only has read functionality because a user (NOT an admin) will never be able to
  * add new flights, update a flight, or delete a flight. This will never show up on our
  * website, so all flight additions/updates/deletes are handled manually in the SQL terminal.

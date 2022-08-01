@@ -20,6 +20,9 @@ import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+/**
+ * Model for a user's primary contact information.
+ */
 @Entity
 @Table(name="person")
 @Validated

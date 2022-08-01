@@ -7,9 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import canair.models.PartialReservation;
 import canair.models.Reservation;
 
+/**
+ * A repository to access information about a flight reservation.
+ */
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
 

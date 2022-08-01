@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Global exception handler that catches any exceptions thrown by other controllers.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 	
@@ -13,6 +16,8 @@ public class GlobalExceptionHandler {
 	//@ExceptionHandler(IllegalArgumentException.class)
 	//public String invalidBean(Exception e) {...}
 	
+	//Return Date Missing is the most likely cause of the error, but this catches all errors just in case.
+	//Mainly used for testing.
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(Exception.class)
 	public String returnDateMissing(Exception e) {

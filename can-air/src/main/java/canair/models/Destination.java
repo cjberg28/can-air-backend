@@ -15,20 +15,19 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-//@Component
+/**
+ * Model for a flight destination.
+ */
 @Entity
 @Table(name="destination")
 @Validated
 public class Destination {
 	
 	@Valid
-//	@Min(1)
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="DestinationId")

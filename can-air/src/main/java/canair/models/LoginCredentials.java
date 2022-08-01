@@ -1,5 +1,8 @@
 package canair.models;
 
+/**
+ * Model for a client-side login attempt.
+ */
 public class LoginCredentials {
 	
 	private String username;

@@ -1,9 +1,7 @@
 package canair.services;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import canair.models.Flight;
 import canair.repositories.FlightRepository;
 
+/**
+ * Service used by FlightController to process information about flights.
+ */
 @Service
 @Transactional
 public class FlightServiceImplementation implements FlightService {

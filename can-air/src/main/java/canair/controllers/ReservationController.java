@@ -1,10 +1,8 @@
 package canair.controllers;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import canair.models.PartialReservation;
 import canair.models.Reservation;
 import canair.models.Flight;
 import canair.services.ReservationService;
 
+/**
+ * Controller that processes all requests pertaining to a reservation.
+ */
 @RestController
 @CrossOrigin("*")
 public class ReservationController {
@@ -43,11 +43,17 @@ public class ReservationController {
 	//You CAN make reservations with other contact information, but that all stays displayed on
 	//the front end. The person-user relationship on the back end only serves to give primary
 	//contact info that gets auto-filled on the front end.
+	/**
+	 * @return whether or not the update was successful
+	 */
 	@PutMapping("/reservations")
 	public boolean updateReservation(@RequestBody Reservation reservation) {
 		return reservationService.updateReservation(reservation);
 	}
 	
+	/**
+	 * @return whether or not the delete was successful
+	 */
 	@DeleteMapping("/reservations")
 	public boolean deleteReservation(@RequestBody Reservation reservation) {
 		return reservationService.deleteReservation(reservation);

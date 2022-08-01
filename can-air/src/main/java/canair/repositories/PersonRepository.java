@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import canair.models.Person;
 
+/**
+ * A repository to access information about a user's contact information.
+ */
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Integer> {
 

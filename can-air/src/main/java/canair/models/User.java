@@ -21,6 +21,9 @@ import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/**
+ * Model for a user of our application.
+ */
 @Entity
 @Table(name="users")
 @Validated
