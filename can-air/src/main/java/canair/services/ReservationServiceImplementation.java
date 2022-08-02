@@ -90,7 +90,10 @@ public class ReservationServiceImplementation implements ReservationService {
 	 */
 	@Override
 	public boolean updateReservation(Reservation reservation) {
-		int rowsAffected = repository.updateReservation(reservation.getReservationId(), reservation.getFlightId());
+		int rowsAffected = repository.updateReservation(reservation.getReservationId(), reservation.getFlightId(),
+														reservation.getReservationFirstName(), reservation.getReservationLastName(),
+														reservation.getReservationPhone(), reservation.getReservationEmail(),
+														reservation.getReservationDateOfBirth());
 		if (rowsAffected == 1) {//Update successful.
 			return true;
 		}

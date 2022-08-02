@@ -35,7 +35,7 @@ INSERT INTO person (firstname, lastname, phone, email, dob)
 VALUES 
 ('Atul', 'Mishra', '248-222-2222', 'amishra@gmail.com', '1989-03-09'),
 ('Cameron', 'Berg', '555-555-5555', 'cjberg@gmail.com', '1966-06-06'),
-('Natalie', 'Riquelme', '333-333-3333', 'nreq@gmail.com', '1977-07-07');
+('Natalie', 'Riquelmy', '333-333-3333', 'nreq@gmail.com', '1977-07-07');
 
 INSERT INTO users (personid, username, password)
 VALUES
@@ -43,17 +43,16 @@ VALUES
 (2, 'cberg', 'lmao'),
 (3, 'nrique', 'hola');
 
-
+select * from reservation;
 -- RESERVATION FOR USER
--- INSERT INTO reservation (flightid, userid)
--- VALUES
--- (1,1),
--- (1,2),
--- (1,3),
--- (2,1),
--- (2,2),
--- (2,3);
-
+INSERT INTO reservation (flightid, userid, reservationfirstname, reservationlastname, reservationphone, reservationemail, reservationdob)
+VALUES
+(1,1,'Sean','Carter','888-888-8888','scarter@gmail.com','1932-03-27'),
+(1,1,'Atul','Mishra','248-222-2222','friedfishra@aol.com','1989-03-09'),
+(1,3,'Natalie','Riquelmy','484-992-1234','nreq@gmail.com','1977-07-07'),
+(2,1,'Dwayne','Johnson','111-111-1111','therock@gmail.com','1972-05-02'),
+(2,2,'Cameron','Berg','555-555-5555','cjberg28@yahoo.com','2000-01-28'),
+(2,3,'Robert','De Niro','444-444-4444','rdn@gmail.com','1943-08-17');
 
 
 

@@ -67,8 +67,8 @@ CREATE TABLE reservation
     UserId int not null,
     ReservationFirstName varchar (50) not null,
     ReservationLastName varchar (50) not null,
-    ReservationPhone int not null,
-    ReservationEmail int not null,
+    ReservationPhone varchar(20) not null,
+    ReservationEmail varchar(30) not null,
     ReservationDOB Date not null,
     
     CONSTRAINT PK_reservation PRIMARY KEY (ReservationId),
