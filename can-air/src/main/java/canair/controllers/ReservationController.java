@@ -33,7 +33,7 @@ public class ReservationController {
 	}
 	
 	@PostMapping("/reservations")
-	public Reservation createReservation(@RequestBody Reservation reservation) {
+	public Reservation createReservation(@RequestBody Reservation reservation) throws Exception {
 		return reservationService.createReservation(reservation);
 	}
 	

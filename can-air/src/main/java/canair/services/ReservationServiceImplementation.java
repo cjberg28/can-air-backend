@@ -3,6 +3,7 @@ package canair.services;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import canair.models.Flight;
 import canair.models.Reservation;
+import canair.repositories.FlightRepository;
 import canair.repositories.ReservationRepository;
 
 /**
@@ -21,6 +23,9 @@ public class ReservationServiceImplementation implements ReservationService {
 	
 	@Autowired
 	private ReservationRepository repository;
+	
+	@Autowired
+	private FlightRepository flightRepository;
 
 	/**
 	 * Gets all reservations for a particular user.
@@ -44,7 +49,36 @@ public class ReservationServiceImplementation implements ReservationService {
 	}
 
 	@Override
-	public Reservation createReservation(Reservation reservation) {
+	public Reservation createReservation(Reservation reservation) throws Exception {	
+		//Implement some logic to check if the flight is out of capacity.
+		
+		//OPTION 1 - If a separate GET request is needed to get the updated flight capacity.
+//		Optional<Flight> flightToBeReserved = flightRepository.findById(reservation.getFlightId());//Should exist.
+//		
+//		if (flightToBeReserved.isEmpty()) {
+//			throw new Exception("Trying to reserve a flight that does not exist.");
+//		}
+//		
+//		if (flightToBeReserved.get().getSeatsRemaining() <= 0) {
+//			return null;//Tells front end that user could not make a reservation due to lack of seats.
+//		}
+//		
+//		//A seat exists. Decrement the capacity by 1, but only if the reservation is successful.
+//		flightRepository.decrementFlightCapacity(reservation.getFlightId(), flightToBeReserved.get().getSeatsRemaining() - 1);
+			
+		
+		
+		//OPTION 2 - If changing the variable w/ a setter automatically updates the database (from the other user reserving first).
+		if (reservation.getFlight().getSeatsRemaining() <= 0) {
+			return null;
+		}
+		
+		//A seat exists. Decrement the capacity by 1, but only if the reservation is successful.
+		reservation.getFlight().setSeatsRemaining(reservation.getFlight().getSeatsRemaining() - 1);
+		
+		
+		//Assume that the flightId and userId are both valid and exist, so the reservation will be successful.
+		//This will never return null, and reservation will never be null, so an exception will not occur.
 		return repository.save(reservation);
 	}
 

@@ -9,7 +9,7 @@ public interface ReservationService {
 
 	Map<Integer, Flight> getReservationsByUserId(int userId);
 
-	Reservation createReservation(Reservation reservation);
+	Reservation createReservation(Reservation reservation) throws Exception;
 
 	boolean updateReservation(Reservation reservation);
 
