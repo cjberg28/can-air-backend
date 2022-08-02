@@ -1,6 +1,9 @@
 package canair.services;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import canair.models.Flight;
+import canair.models.FrontEndReservation;
 import canair.models.Reservation;
 import canair.repositories.FlightRepository;
 import canair.repositories.ReservationRepository;
@@ -30,19 +34,28 @@ public class ReservationServiceImplementation implements ReservationService {
 	/**
 	 * Gets all reservations for a particular user.
 	 * @param userId (int, the user's id)
-	 * @return results (HashMap<Integer, Flight>, a map of (Reservation ID, Flight Information) pairs)
+	 * @return results (List<FrontEndReservation>, a list of reservations)
 	 */
 	@Override
-	public Map<Integer, Flight> getReservationsByUserId(int userId) {
+	public List<FrontEndReservation> getReservationsByUserId(int userId) {
 		List<Reservation> reservations = repository.findByUserId(userId);
-		HashMap<Integer, Flight> results = new HashMap<>();
+		List<FrontEndReservation> results = new LinkedList<>();
 		
 		if (reservations.isEmpty()) {
 			return null;
 		}
 	
+		//Yes, this is gross. Were there more time, we would implement a builder pattern of some sort.
 		for (Reservation r : reservations) {
-			results.put(r.getReservationId(), r.getFlight());
+			Flight f = r.getFlight();
+			FrontEndReservation newReservation = new FrontEndReservation(
+				r.getReservationId(), r.getFlightId(), r.getUserId(), r.getReservationFirstName(),
+				r.getReservationLastName(), r.getReservationPhone(), r.getReservationEmail(),
+				r.getReservationDateOfBirth(), f.getDepartureDate(), f.getDepartureLocation(),
+				f.getArrivalLocation(), f.isRoundTrip(), f.getReturnDate(), f.getDepartureDepartureTime(),
+				f.getDepartureArrivalTime(), f.getReturnDepartureTime(), f.getReturnArrivalTime()
+			);
+			results.add(newReservation);
 		}
 		
 		return results;

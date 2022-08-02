@@ -1,5 +1,6 @@
 package canair.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import canair.models.Reservation;
+import canair.models.FrontEndReservation;
 import canair.models.Flight;
 import canair.services.ReservationService;
 
@@ -28,7 +30,7 @@ public class ReservationController {
 	
 	//GET: /reservations?userId={userId}
 	@GetMapping("/reservations")
-	public Map<Integer, Flight> getReservationsByUserId(@RequestParam(name="userId") int userId) {
+	public List<FrontEndReservation> getReservationsByUserId(@RequestParam(name="userId") int userId) {
 		return reservationService.getReservationsByUserId(userId);
 	}
 	
@@ -37,12 +39,9 @@ public class ReservationController {
 		return reservationService.createReservation(reservation);
 	}
 	
-	//Can only change flightId in this request.
 	//reservationId does not change. userId does not change, as you can't make reservations
 	//for other users (you don't know their login).
-	//You CAN make reservations with other contact information, but that all stays displayed on
-	//the front end. The person-user relationship on the back end only serves to give primary
-	//contact info that gets auto-filled on the front end.
+	//You CAN make reservations with other contact information, however.
 	/**
 	 * @return whether or not the update was successful
 	 */
