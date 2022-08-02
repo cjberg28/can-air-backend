@@ -65,6 +65,11 @@ CREATE TABLE reservation
 	ReservationId int not null auto_increment,
     FlightId int not null,
     UserId int not null,
+    ReservationFirstName varchar (50) not null,
+    ReservationLastName varchar (50) not null,
+    ReservationPhone int not null,
+    ReservationEmail int not null,
+    ReservationDOB Date not null,
     
     CONSTRAINT PK_reservation PRIMARY KEY (ReservationId),
     CONSTRAINT FK_reservation_flight_FlightId FOREIGN KEY (FlightId) REFERENCES flight(FlightId),
