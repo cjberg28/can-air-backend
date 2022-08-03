@@ -90,12 +90,43 @@ VALUES
 -- RESERVATION FOR USER
 INSERT INTO reservation (flightid, userid, reservationfirstname, reservationlastname, reservationphone, reservationemail, reservationdob)
 VALUES
+
+(26,1,'Mal', 'Cowen', '343-969-5302', 'mcowene@wikimedia.org', '1991-06-11'),
+(26,2,'Nicole', 'Wyldish', '322-617-3975', 'nwyldishf@foxnews.com', '1968-06-22'),
+(26,3,'Kimmie', 'Helling', '477-747-0307', 'khellingg@hostgator.com', '1971-09-15'),
+(27,1,'Katharyn', 'Leon', '548-933-3912', 'kleonh@gizmodo.com', '1967-07-13'),
+(28,2,'Ammamaria', 'Stouther', '969-589-4787', 'astoutheri@phpbb.com', '1972-06-21'),
+(29,3,'Dorotea', 'Hardstaff', '778-714-0258', 'dhardstaffj@squidoo.com', '1969-10-15'),
+(30,1,'Benito', 'Reith', '473-564-9182', 'breithk@tiny.cc', '1991-11-02'),
+(30,2,'Sollie', 'Beedie', '436-633-5273', 'sbeediel@flickr.com', '1976-11-30'),
+(30,3,'El', 'Giacobelli', '993-185-2141', 'egiacobellim@apple.com', '2002-07-18'),
+(31,1,'Francisca', 'McQuie', '411-810-7522', 'fmcquien@cdbaby.com', '1986-02-16'),
+
+(15,1,'Federico', 'Grinaway', '210-557-0290', 'fgrinaway0@toplist.cz', '1992-06-25'),
+(16,2,'Spence', 'Landsberg', '743-810-2424', 'slandsberg1@mit.edu', '1987-02-18'),
+(16,3,'Jelene', 'Riggeard', '515-450-1039', 'jriggeard2@friendfeed.com', '1988-07-02'),
+(17,1,'Anissa', 'Gyford', '588-511-9605', 'agyford3@163.com', '1966-11-19'),
+(18,2,'Janine', 'Warret', '851-756-0721', 'jwarret4@w3.org', '1996-07-03'),
+(19,3,'Skyler', 'Sabey', '668-884-6199', 'ssabey5@mashable.com', '1988-03-01'),
+(20,1,'Jobina', 'Parker', '291-529-1829', 'jparker6@xinhuanet.com', '1985-04-12'),
+(20,2,'Tressa', 'Guiraud', '598-524-8636', 'tguiraud7@twitter.com', '1985-08-06'),
+(21,3,'Linnet', 'Donaho', '686-265-4059', 'ldonaho8@ehow.com', '1983-09-24'),
+(22,1,'Clair', 'Aitken', '176-695-2454', 'caitken9@globo.com', '1966-07-25'),
+(22,2,'Devondra', 'Tompkinson', '128-589-6063', 'dtompkinsona@clickbank.net', '1994-10-02'),
+(23,3,'Roxine', 'Queripel', '158-712-1312', 'rqueripelb@icq.com', '1966-11-06'),
+(25,1,'Udall', 'Dannehl', '643-985-8504', 'udannehlc@japanpost.jp', '1967-10-17'),
+(25,2,'Frayda', 'Kareman', '354-982-9026', 'fkaremand@printfriendly.com', '1974-05-11'),
+
+(24,3,'Jermaine','Cole','6578459090','jcole@yahoo.com','1985-01-28'),
+
 (1,1,'Sean','Carter','888-888-8888','scarter@gmail.com','1932-03-27'),
 (1,1,'Atul','Mishra','248-222-2222','friedfishra@aol.com','1989-03-09'),
 (1,3,'Natalie','Riquelmy','484-992-1234','nreq@gmail.com','1977-07-07'),
 (2,1,'Dwayne','Johnson','111-111-1111','therock@gmail.com','1972-05-02'),
 (2,2,'Cameron','Berg','555-555-5555','cjberg28@yahoo.com','2000-01-28'),
 (2,3,'Robert','De Niro','444-444-4444','rdn@gmail.com','1943-08-17');
+
+
 
 
 
