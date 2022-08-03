@@ -95,9 +95,8 @@ public class ReservationServiceImplementation implements ReservationService {
 		return repository.save(reservation);
 	}
 
-	//Updating a reservation will not change the reservationId nor the userId, only the flightId.
-	//The User-Person OneToOne relationship only exists to autofill information in the reservation form on
-	//the front end. Any change to the basic contact information will be only on the front end.
+	//Updating a reservation will not change the reservationId nor the userId, only the flightId
+	//and reservation contact information.
 	/**
 	 * @return whether or not the update was successful
 	 */
@@ -117,8 +116,8 @@ public class ReservationServiceImplementation implements ReservationService {
 	 * @return whether or not the delete was successful
 	 */
 	@Override
-	public boolean deleteReservation(Reservation reservation) {
-		int rowsAffected = repository.deleteReservation(reservation.getReservationId());
+	public boolean deleteReservation(int reservationId) {
+		int rowsAffected = repository.deleteReservation(reservationId);
 		if (rowsAffected == 1) {//Delete successful.
 			return true;
 		}

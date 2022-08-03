@@ -15,6 +15,6 @@ public interface ReservationService {
 
 	boolean updateReservation(Reservation reservation);
 
-	boolean deleteReservation(Reservation reservation);
+	boolean deleteReservation(int reservationId);
 
 }
