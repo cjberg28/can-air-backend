@@ -66,28 +66,28 @@ public class ReservationServiceImplementation implements ReservationService {
 		//Implement some logic to check if the flight is out of capacity.
 		
 		//OPTION 1 - If a separate GET request is needed to get the updated flight capacity.
-//		Optional<Flight> flightToBeReserved = flightRepository.findById(reservation.getFlightId());//Should exist.
-//		
-//		if (flightToBeReserved.isEmpty()) {
-//			throw new Exception("Trying to reserve a flight that does not exist.");
-//		}
-//		
-//		if (flightToBeReserved.get().getSeatsRemaining() <= 0) {
-//			return null;//Tells front end that user could not make a reservation due to lack of seats.
-//		}
-//		
-//		//A seat exists. Decrement the capacity by 1, but only if the reservation is successful.
-//		flightRepository.decrementFlightCapacity(reservation.getFlightId(), flightToBeReserved.get().getSeatsRemaining() - 1);
+		Optional<Flight> flightToBeReserved = flightRepository.findById(reservation.getFlightId());//Should exist.
+		
+		if (flightToBeReserved.isEmpty()) {
+			throw new Exception("Trying to reserve a flight that does not exist.");
+		}
+		
+		if (flightToBeReserved.get().getSeatsRemaining() <= 0) {
+			return null;//Tells front end that user could not make a reservation due to lack of seats.
+		}
+		
+		//A seat exists. Decrement the capacity by 1, but only if the reservation is successful.
+		flightRepository.decrementFlightCapacity(reservation.getFlightId(), flightToBeReserved.get().getSeatsRemaining() - 1);
 			
 		
 		
 		//OPTION 2 - If changing the variable w/ a setter automatically updates the database (from the other user reserving first).
-		if (reservation.getFlight().getSeatsRemaining() <= 0) {
-			return null;
-		}
-		
-		//A seat exists. Decrement the capacity by 1, but only if the reservation is successful.
-		reservation.getFlight().setSeatsRemaining(reservation.getFlight().getSeatsRemaining() - 1);
+//		if (reservation.getFlight().getSeatsRemaining() <= 0) {
+//			return null;
+//		}
+//		
+//		//A seat exists. Decrement the capacity by 1, but only if the reservation is successful.
+//		reservation.getFlight().setSeatsRemaining(reservation.getFlight().getSeatsRemaining() - 1);
 		
 		
 		//Assume that the flightId and userId are both valid and exist, so the reservation will be successful.
