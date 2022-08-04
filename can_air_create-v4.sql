@@ -38,8 +38,6 @@ CREATE TABLE users
 );
 
 
-
-
 CREATE TABLE flight
 (
 	FlightId int not null auto_increment,
