@@ -77,7 +77,7 @@ public class ReservationServiceImplementation implements ReservationService {
 		}
 		
 		//A seat exists. Decrement the capacity by 1, but only if the reservation is successful.
-		flightRepository.decrementFlightCapacity(reservation.getFlightId(), flightToBeReserved.get().getSeatsRemaining() - 1);
+		flightRepository.updateFlightCapacity(reservation.getFlightId(), flightToBeReserved.get().getSeatsRemaining() - 1);
 			
 		
 		
@@ -116,9 +116,12 @@ public class ReservationServiceImplementation implements ReservationService {
 	 * @return whether or not the delete was successful
 	 */
 	@Override
-	public boolean deleteReservation(int reservationId) {
+	public boolean deleteReservation(int reservationId, int flightId) {
+		Flight reservationFlight = flightRepository.findById(flightId).get();//Should exist.
 		int rowsAffected = repository.deleteReservation(reservationId);
 		if (rowsAffected == 1) {//Delete successful.
+			//Give the seat back to the flight.
+			flightRepository.updateFlightCapacity(flightId ,reservationFlight.getSeatsRemaining() + 1);
 			return true;
 		}
 		return false;

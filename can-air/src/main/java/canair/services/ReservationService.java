@@ -15,6 +15,9 @@ public interface ReservationService {
 
 	boolean updateReservation(Reservation reservation);
 
-	boolean deleteReservation(int reservationId);
+	/**
+	 * @return whether or not the delete was successful
+	 */
+	boolean deleteReservation(int reservationId, int flightId);
 
 }

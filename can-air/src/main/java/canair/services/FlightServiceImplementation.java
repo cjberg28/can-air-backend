@@ -25,7 +25,9 @@ public class FlightServiceImplementation implements FlightService {
 	
 	@Override
 	public List<Flight> getAllFlights() {
-		return (List<Flight>) repository.findAll();
+		//Finds all flights that have seats left.
+		//Flights with no seats left still exist in the database.
+		return repository.findBySeatsRemainingGreaterThan(0);
 	}
 
 	@Override
@@ -53,17 +55,17 @@ public class FlightServiceImplementation implements FlightService {
 		List<Object> results = new LinkedList<Object>();
 		
 		if (parameters.containsKey("returnDate")) {//User wanted a round-trip flight.
-			flights = repository.findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndReturnDate(
+			flights = repository.findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndReturnDateAndSeatsRemainingGreaterThan(
 					(int) parameters.get("departureLocation"),(int) parameters.get("arrivalLocation"),
 					(LocalDate) parameters.get("departureDate"), (boolean) parameters.get("isRoundTrip"),
-					(LocalDate) parameters.get("returnDate"));
+					(LocalDate) parameters.get("returnDate"), 0);
 			if (!flights.isEmpty()) {//Could give empty list.
 				results.add(true);
 				results.add(flights);
 				return results;
 			}
-			flights = repository.findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTrip((int) parameters.get("departureLocation"),(int) parameters.get("arrivalLocation"),
-					(LocalDate) parameters.get("departureDate"), (boolean) parameters.get("isRoundTrip"));
+			flights = repository.findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndSeatsRemainingGreaterThan((int) parameters.get("departureLocation"),(int) parameters.get("arrivalLocation"),
+					(LocalDate) parameters.get("departureDate"), (boolean) parameters.get("isRoundTrip"), 0);
 			if (!flights.isEmpty()) {
 				results.add(true);
 				results.add(flights);
@@ -73,22 +75,22 @@ public class FlightServiceImplementation implements FlightService {
 		
 		
 		//User wanted a one-way flight, or no round-trip flights could be found with given destination/dep date.
-		flights = repository.findByDepartureLocationAndArrivalLocationAndDepartureDate((int) parameters.get("departureLocation"),(int) parameters.get("arrivalLocation"),
-				(LocalDate) parameters.get("departureDate"));
+		flights = repository.findByDepartureLocationAndArrivalLocationAndDepartureDateAndSeatsRemainingGreaterThan((int) parameters.get("departureLocation"),(int) parameters.get("arrivalLocation"),
+				(LocalDate) parameters.get("departureDate"), 0);
 		if (!flights.isEmpty()) {
 			results.add(true);
 			results.add(flights);
 			return results;
 		}
 		
-		flights = repository.findByDepartureLocationAndArrivalLocation((int) parameters.get("departureLocation"),(int) parameters.get("arrivalLocation"));
+		flights = repository.findByDepartureLocationAndArrivalLocationAndSeatsRemainingGreaterThan((int) parameters.get("departureLocation"),(int) parameters.get("arrivalLocation"), 0);
 		if (!flights.isEmpty()) {
 			results.add(true);
 			results.add(flights);
 			return results;
 		}
 		
-		flights = repository.findByDepartureLocation((int) parameters.get("departureLocation"));
+		flights = repository.findByDepartureLocationAndSeatsRemainingGreaterThan((int) parameters.get("departureLocation"), 0);
 		if (!flights.isEmpty()) {
 			results.add(true);
 			results.add(flights);

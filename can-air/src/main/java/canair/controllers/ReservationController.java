@@ -57,8 +57,9 @@ public class ReservationController {
 	/**
 	 * @return whether or not the delete was successful
 	 */
-	@DeleteMapping("/reservations/{reservationId}")
-	public boolean deleteReservation(@PathVariable @Valid @Min(1) int reservationId) {
-		return reservationService.deleteReservation(reservationId);
+	@DeleteMapping("/reservations")
+	public boolean deleteReservation(@RequestParam(name="reservationId") @Valid @Min(1) int reservationId,
+									 @RequestParam(name="flightId") @Valid @Min(1) int flightId) {
+		return reservationService.deleteReservation(reservationId, flightId);
 	}
 }

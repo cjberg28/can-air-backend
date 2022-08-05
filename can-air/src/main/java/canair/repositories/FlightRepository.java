@@ -24,19 +24,22 @@ public interface FlightRepository extends CrudRepository<Flight, Integer> {
 
 	//Only put custom methods in here.
 	
-	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndReturnDate(
-			int departureLocation, int arrivalLocation, LocalDate departureDate, boolean isRoundTrip, LocalDate returnDate);
+	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndReturnDateAndSeatsRemainingGreaterThan(
+			int departureLocation, int arrivalLocation, LocalDate departureDate, boolean isRoundTrip, LocalDate returnDate, int seatsRemaining);
 
-	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDate(int departureLocation, int arrivalLocation, LocalDate departureDate);
+	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndSeatsRemainingGreaterThan(int departureLocation, int arrivalLocation, LocalDate departureDate, int seatsRemaining);
 
-	List<Flight> findByDepartureLocationAndArrivalLocation(int departureLocation, int arrivalLocation);
+	List<Flight> findByDepartureLocationAndArrivalLocationAndSeatsRemainingGreaterThan(int departureLocation, int arrivalLocation, int seatsRemaining);
 
-	List<Flight> findByDepartureLocation(int departureLocation);
+	List<Flight> findByDepartureLocationAndSeatsRemainingGreaterThan(int departureLocation, int seatsRemaining);
 
-	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTrip(int departureLocation, int arrivalLocation,
-			LocalDate departureDate, boolean isRoundTrip);
+	List<Flight> findByDepartureLocationAndArrivalLocationAndDepartureDateAndIsRoundTripAndSeatsRemainingGreaterThan(int departureLocation, int arrivalLocation,
+			LocalDate departureDate, boolean isRoundTrip, int seatsRemaining);
 
 	@Modifying
 	@Query("update Flight f set f.seatsRemaining = ?2 where f.flightId = ?1")
-	void decrementFlightCapacity(int flightId, int newCapacity);
+	void updateFlightCapacity(int flightId, int newCapacity);
+
+	List<Flight> findBySeatsRemainingGreaterThan(int seatsRemaining);
+
 }
