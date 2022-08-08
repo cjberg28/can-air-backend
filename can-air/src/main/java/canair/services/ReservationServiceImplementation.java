@@ -68,7 +68,7 @@ public class ReservationServiceImplementation implements ReservationService {
 		//OPTION 1 - If a separate GET request is needed to get the updated flight capacity.
 		Optional<Flight> flightToBeReserved = flightRepository.findById(reservation.getFlightId());//Should exist.
 		
-		if (flightToBeReserved.isEmpty()) {
+		if (!flightToBeReserved.isPresent()) {
 			throw new Exception("Trying to reserve a flight that does not exist.");
 		}
 		
